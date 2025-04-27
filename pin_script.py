@@ -3,6 +3,7 @@ import time
 
 HOST = '127.0.0.1'
 PORT = 8888
+Delay = 1.0
 
 def try_pin(pin):
     pin_str = f"{pin:03d}"  
@@ -45,7 +46,7 @@ for pin in range(1000):
     if success:
         print(f"Found correct PIN: {pin:03d}")
         break
-    time.sleep(1.2)
+    time.sleep(Delay)
 
 
 
