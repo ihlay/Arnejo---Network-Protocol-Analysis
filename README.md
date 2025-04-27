@@ -4,7 +4,7 @@ ffmpeg -i INPUTVIDEO.mp4 -c:v libx264 -crf 37 -preset ultrafast -c:a aac -b:a 12
 The quality po is not that clear, it's because of that compressor po.
 
 If you can't watch the video po. 
-Here's a googledrive video link that I uploaded in my drive: 
+Here's a googledrive video link and the wirehark captured that I uploaded in my drive: 
 
 https://drive.google.com/drive/folders/1V4qaA3z3h7NUrztylpf3aa4kBMoDCCnm?usp=sharing
 
