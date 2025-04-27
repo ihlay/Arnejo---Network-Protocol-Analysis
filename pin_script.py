@@ -7,4 +7,10 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((HOST, PORT))
 print("Connected!")
 
+# Try sending random text
+sock.sendall(b"Hello Server")
+
+response = sock.recv(4096)
+print(response.decode())
+
 sock.close()
