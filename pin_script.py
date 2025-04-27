@@ -5,13 +5,27 @@ PORT = 8888
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((HOST, PORT))
-print("Connected!")
 
-# Trying to send POST request manually
-request = "POST /verify HTTP/1.1\nHost: 127.0.0.1\n\nmagicNumber=123"
+data = "magicNumber=123"
+request = (
+    "POST /verify HTTP/1.1\r\n"
+    "Host: 127.0.0.1\r\n"
+    "Content-Type: application/x-www-form-urlencoded\r\n"
+    f"Content-Length: {len(data)}\r\n"
+    "Connection: close\r\n"
+    "\r\n"
+    f"{data}"
+)
+
 sock.sendall(request.encode())
 
-response = sock.recv(4096)
+response = b""
+while True:
+    chunk = sock.recv(1024)
+    if not chunk:
+        break
+    response += chunk
+
 print(response.decode())
 
 sock.close()
