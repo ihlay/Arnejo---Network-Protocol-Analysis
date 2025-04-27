@@ -1,4 +1,5 @@
 import socket
+import time 
 
 HOST = '127.0.0.1'
 PORT = 8888
@@ -39,6 +40,12 @@ def try_pin(pin):
         print(f"Trying PIN {pin_str}")
         return False
 
+for pin in range(1000):
+    success = try_pin(pin)
+    if success:
+        print(f"Found correct PIN: {pin:03d}")
+        break
+    time.sleep(1.2)
 
 
 
